@@ -33,25 +33,29 @@ function SkeletonBox({ style }: { style?: object }) {
 
 export function SkeletonCard() {
   return (
-    <View style={styles.card}>
-      <SkeletonBox style={styles.image} />
-      <View style={styles.info}>
-        <SkeletonBox style={styles.tag} />
-        <SkeletonBox style={styles.title} />
-        <SkeletonBox style={styles.titleShort} />
-        <SkeletonBox style={styles.price} />
+    <View style={styles.wrapper}>
+      <View style={styles.card}>
+        <SkeletonBox style={styles.image} />
+        <View style={styles.info}>
+          <SkeletonBox style={styles.tag} />
+          <SkeletonBox style={styles.title} />
+          <SkeletonBox style={styles.titleShort} />
+          <SkeletonBox style={styles.price} />
+        </View>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    width: '50%',
+    padding: spacing.xs,
+  },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.card,
     overflow: 'hidden',
-    flex: 1,
-    margin: spacing.xs,
   },
   image: { aspectRatio: 4 / 5, borderRadius: 0 },
   info: { padding: spacing.md, gap: spacing.sm },

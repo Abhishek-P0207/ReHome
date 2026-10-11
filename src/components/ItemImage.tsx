@@ -57,7 +57,10 @@ export function ItemImage({
   const iconName = categoryIcons[category] ?? categoryIcons.default;
   const iconSize = size ? size * 0.4 : 48;
 
-  if (localSource || (uri && uri.startsWith('file://'))) {
+  const isRemoteOrFile =
+    Boolean(uri && (uri.startsWith('http') || uri.startsWith('file://') || uri.startsWith('content://') || uri.startsWith('data:') || uri.startsWith('blob:')));
+
+  if (localSource || isRemoteOrFile) {
     return (
       <View
         style={[

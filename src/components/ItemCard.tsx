@@ -69,7 +69,7 @@ export function ItemCard({ item, index, onPress }: Props) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
+    width: '50%',
     padding: spacing.xs,
   },
   card: {

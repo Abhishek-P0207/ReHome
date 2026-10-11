@@ -83,6 +83,12 @@ export interface DonationRequest {
   createdAt: string;
 }
 
+export interface ProfileStats {
+  itemsListed: number;
+  dealsDone: number;
+  itemsDonated: number;
+}
+
 /** App-wide typed error for service layer */
 export type AppErrorCode =
   | 'NOT_FOUND'

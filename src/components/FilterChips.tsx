@@ -1,8 +1,9 @@
 /**
  * FilterChips — single-select, horizontally scrollable chip row.
+ * Fixed height and centered alignment to prevent vertical stretching across all platforms.
  */
 import React from 'react';
-import { StyleSheet, ScrollView, Pressable, View } from 'react-native';
+import { StyleSheet, ScrollView, Pressable, View, type ViewStyle } from 'react-native';
 import { Text } from 'react-native-paper';
 import { colors, fontFamily, spacing, radius } from '@/theme/tokens';
 
@@ -15,55 +16,68 @@ interface Props {
   chips: Chip[];
   selected: string;
   onSelect: (key: string) => void;
+  style?: ViewStyle;
 }
 
-export function FilterChips({ chips, selected, onSelect }: Props) {
+export function FilterChips({ chips, selected, onSelect, style }: Props) {
   return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.container}
-    >
-      {chips.map((chip) => {
-        const isActive = chip.key === selected;
-        return (
-          <Pressable
-            key={chip.key}
-            onPress={() => onSelect(chip.key)}
-            accessibilityLabel={`Filter by ${chip.label}`}
-            accessibilityState={{ selected: isActive }}
-            style={[
-              styles.chip,
-              isActive ? styles.chipActive : styles.chipInactive,
-            ]}
-          >
-            <Text
+    <View style={[styles.wrapper, style]}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.container}
+        style={styles.scroll}
+      >
+        {chips.map((chip) => {
+          const isActive = chip.key === selected;
+          return (
+            <Pressable
+              key={chip.key}
+              onPress={() => onSelect(chip.key)}
+              accessibilityLabel={`Filter by ${chip.label}`}
+              accessibilityState={{ selected: isActive }}
               style={[
-                styles.label,
-                isActive ? styles.labelActive : styles.labelInactive,
+                styles.chip,
+                isActive ? styles.chipActive : styles.chipInactive,
               ]}
             >
-              {chip.label}
-            </Text>
-          </Pressable>
-        );
-      })}
-    </ScrollView>
+              <Text
+                style={[
+                  styles.label,
+                  isActive ? styles.labelActive : styles.labelInactive,
+                ]}
+              >
+                {chip.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    height: 48,
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  scroll: {
+    flexGrow: 0,
+  },
   container: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: spacing.sm,
     paddingHorizontal: spacing.lg,
   },
   chip: {
     paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
+    height: 36,
     borderRadius: radius.chip,
-    minHeight: 36,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   chipActive: {
     backgroundColor: colors.primary,
@@ -77,6 +91,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.medium,
     fontSize: 13,
     lineHeight: 18,
+    textAlign: 'center',
   },
   labelActive: {
     color: colors.white,

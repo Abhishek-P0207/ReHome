@@ -47,12 +47,14 @@ export function OfferCard({
         <View style={styles.actions}>
           <Button
             label="Accept"
+            size="sm"
             variant="primary"
             onPress={onAccept ?? (() => {})}
             style={styles.actionBtn}
           />
           <Button
             label="Decline"
+            size="sm"
             variant="ghost"
             onPress={onDecline ?? (() => {})}
             style={styles.actionBtn}

@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   content: {
-    paddingBottom: spacing.xxxl,
+    paddingBottom: 100,
     gap: spacing.md,
   },
   screenTitle: {

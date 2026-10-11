@@ -77,8 +77,8 @@ export function ExchangeCard({
 
       {canRespond && status === 'pending' && (
         <View style={styles.actions}>
-          <Button label="Accept" variant="primary" onPress={onAccept ?? (() => {})} style={styles.btn} />
-          <Button label="Decline" variant="ghost" onPress={onDecline ?? (() => {})} style={styles.btn} />
+          <Button label="Accept" size="sm" variant="primary" onPress={onAccept ?? (() => {})} style={styles.btn} />
+          <Button label="Decline" size="sm" variant="ghost" onPress={onDecline ?? (() => {})} style={styles.btn} />
         </View>
       )}
     </View>
