@@ -8,6 +8,7 @@ This document records architectural, design, and library decisions made during t
 - Configured Expo Router with standard file-based routing in the `app/` directory.
 - Configured path alias `@/*` -> `src/*` for clean imports across the project.
 - Strict TypeScript configuration (`strict: true`) matching specification.
+- Installed `react-native-web`, `react-dom`, and `@expo/metro-runtime` to fulfill constraint: `npx expo start --web should also load without crashing`.
 
 ### 2. Design System and Theming
 - Implemented tokens in `src/theme/tokens.ts` using strict 8-point spacing grid, Plus Jakarta Sans typography, and custom ReHome color palette (Primary `#1F9D7A`, Sell `#1F9D7A`, Exchange `#B7660B`, Donate `#B0306A`).
